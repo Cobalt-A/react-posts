@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-const ProfilePage: FC = () => {
+const User: FC = () => {
   return <div className="App"></div>;
 };
 
-export default ProfilePage;
+export default User;

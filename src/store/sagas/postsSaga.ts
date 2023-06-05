@@ -14,6 +14,8 @@ function* getSagaPostsAsync(action: any) {
     yield put(postsSlice.actions.setPosts([...currentState, ...response]));
   } catch (error) {
     console.error(error || "Cannot get api response");
+  } finally {
+    yield put(postsSlice.actions.setLoading(false));
   }
 }
 

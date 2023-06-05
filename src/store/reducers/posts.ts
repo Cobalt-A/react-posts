@@ -4,11 +4,13 @@ import { IPost } from "../../types/IPost";
 interface PostsState {
   posts: IPost[];
   page: number;
+  isLoading: boolean;
 }
 
 const initialState: PostsState = {
   posts: [],
   page: 1,
+  isLoading: false,
 };
 
 export const postsSlice = createSlice({
@@ -23,6 +25,9 @@ export const postsSlice = createSlice({
     },
     setPostsPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
   },
 });

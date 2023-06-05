@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Container, Stack } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { postsSlice } from "../../../store/reducers/posts";
-import Post from "./Post/Post";
-import PostsMoreButton from "./PostsMoreButton/PostsMoreButton";
+import Post from "../../../ui/Post/Post";
+import PostsMoreButton from "./HomeMoreButton/PostsMoreButton";
 
 const Posts: FC = () => {
   const dispatch = useAppDispatch();
@@ -11,7 +11,9 @@ const Posts: FC = () => {
   const { posts, page } = useAppSelector((state) => state.postsReducer);
 
   useEffect(() => {
-    dispatch(getPosts(page));
+    setTimeout(() => {
+      dispatch(getPosts(page));
+    }, 500);
   }, [dispatch, getPosts, page]);
 
   return (

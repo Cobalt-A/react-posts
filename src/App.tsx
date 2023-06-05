@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
+import Home from "./pages/Home/Home";
+import User from "./pages/User/User";
 
 const App: FC = () => {
   return (
     <MainLayout>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<User />} />
       </Routes>
     </MainLayout>
   );
