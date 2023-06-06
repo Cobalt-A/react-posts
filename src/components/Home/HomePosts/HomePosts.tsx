@@ -6,14 +6,15 @@ import Post from "../../../ui/Post/Post";
 import PostsMoreButton from "./HomeMoreButton/PostsMoreButton";
 import Loader from "../../../ui/Loader/Loader";
 import { IPost } from "../../../types/IPost";
+import { filterPostsByTitle } from "../../../utils/filters/filters";
+import { postSorting } from "../../../utils/sortings/sortings";
 
 const Posts: FC = () => {
   const dispatch = useAppDispatch();
-  const { getPosts, setLoading, setPosts } = postsSlice.actions;
-  const { posts, page, isLoading, isShowMoreButton, searchValue } = useAppSelector(
-    (state) => state.postsReducer
-  );
-  const [filteredPosts, setFilteredPosts] = useState<IPost[]>([]);
+  const { getPosts, setLoading, setPosts, setPostsPage } = postsSlice.actions;
+  const { posts, page, isLoading, isShowMoreButton, searchValue, sortingType } =
+    useAppSelector((state) => state.postsReducer);
+  const [viewPosts, serViewPosts] = useState<IPost[]>([]);
 
   useEffect(() => {
     dispatch(setLoading(true));
@@ -23,22 +24,22 @@ const Posts: FC = () => {
   }, [dispatch, getPosts, page, setLoading]);
 
   useEffect(() => {
-    const searchedPosts = posts.filter(
-      (post) => post.title.toLowerCase().indexOf(searchValue) !== -1
-    );
-    setFilteredPosts(searchedPosts);
-  }, [posts, searchValue]);
+    const filteredPosts = filterPostsByTitle(posts, searchValue);
+    const sortedPosts = postSorting(filteredPosts, sortingType);
+    serViewPosts(sortedPosts);
+  }, [posts, searchValue, sortingType]);
 
   useEffect(() => {
     return () => {
       dispatch(setPosts([]));
+      dispatch(setPostsPage(1));
     };
-  }, [dispatch, setPosts]);
+  }, [dispatch, setPosts, setPostsPage]);
 
   return (
     <Container className="mt-3 mb-3">
       <Stack gap={3}>
-        {filteredPosts?.map((post, index) => (
+        {viewPosts?.map((post, index) => (
           <Post post={post} key={index} />
         ))}
         {isLoading && <Loader />}

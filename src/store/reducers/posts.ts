@@ -1,9 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IPost } from "../../types/IPost";
+import { postSortingType } from "../../types/SortingTypes";
 
 interface PostsState {
   posts: IPost[];
   searchValue: string;
+  sortingType: postSortingType;
   page: number;
   isLoading: boolean;
   isShowMoreButton: boolean;
@@ -12,6 +14,7 @@ interface PostsState {
 const initialState: PostsState = {
   posts: [],
   searchValue: "",
+  sortingType: "none",
   page: 1,
   isLoading: false,
   isShowMoreButton: false,
@@ -29,6 +32,9 @@ export const postsSlice = createSlice({
     },
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
+    },
+    setSortingType: (state, action: PayloadAction<postSortingType>) => {
+      state.sortingType = action.payload;
     },
     setPostsPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
