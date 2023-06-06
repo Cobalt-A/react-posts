@@ -1,26 +1,38 @@
 import React, { FC } from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Nav, Navbar, Offcanvas } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styles from "./MainHeader.module.sass";
 
 const MainHeader: FC = () => {
   return (
-    <header className={styles.header}>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">React-Posts</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#features">Главная</Nav.Link>
-              <Nav.Link href="#pricing">Обо мне</Nav.Link>
-              <Nav.Link href="#pricing">Подробнее</Nav.Link>
+    <Navbar variant="dark" bg="dark" expand="xxl" className="mb-3">
+      <Container>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+        <Navbar.Offcanvas
+          id={`offcanvasNavbar-expand-lg`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+          placement="start"
+          bg="dark"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+              React-posts
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="flex-grow-1 pe-3">
+              <Link className={styles.link} to="/">
+                Главная
+              </Link>
+              <Link className={styles.link} to="/">
+                Обо мне
+              </Link>
             </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   );
 };
 

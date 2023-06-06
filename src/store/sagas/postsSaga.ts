@@ -10,8 +10,13 @@ function* getSagaPostsAsync(action: any) {
       getApiResponse<IPost[]>,
       `/posts?_limit=8&_page=${page}`
     );
+    if (!response.length) {
+      yield put(postsSlice.actions.setShowMoreButton(false));
+      return;
+    }
     const currentState: IPost[] = yield select((state) => state.postsReducer.posts);
     yield put(postsSlice.actions.setPosts([...currentState, ...response]));
+    yield put(postsSlice.actions.setShowMoreButton(true));
   } catch (error) {
     console.error(error || "Cannot get api response");
   } finally {

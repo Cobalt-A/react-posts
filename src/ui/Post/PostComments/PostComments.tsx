@@ -31,7 +31,7 @@ const PostComments: FC<PostCommentsProps> = ({ postId }) => {
         <Accordion.Body onEnter={enterHandler}>
           <Stack gap={2}>
             {isLoading && (
-              <Spinner animation="border" role="status">
+              <Spinner className="mx-auto" animation="border" role="status">
                 <span className="visually-hidden">Загрузка...</span>
               </Spinner>
             )}

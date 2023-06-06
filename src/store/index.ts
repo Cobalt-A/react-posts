@@ -1,5 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import postsReducer from "./reducers/posts";
+import userPostsReducer from "./reducers/userPosts";
+import userReducer from "./reducers/user";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 
@@ -7,6 +9,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   postsReducer,
+  userPostsReducer,
+  userReducer,
 });
 
 export const store = configureStore({

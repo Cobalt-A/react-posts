@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import { postsSlice } from "../../../../store/reducers/posts";
 
@@ -14,13 +14,8 @@ const PostsMoreButton: FC = () => {
   };
 
   return (
-    <Button onClick={clickHandler} variant="dark">
-      {!isLoading && <span>Показать еще</span>}
-      {isLoading && (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Загрузка...</span>
-        </Spinner>
-      )}
+    <Button disabled={isLoading} onClick={clickHandler} variant="dark">
+      <span>Показать еще</span>
     </Button>
   );
 };
