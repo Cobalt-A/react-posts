@@ -1,5 +1,5 @@
 import React, { FC, Fragment, ReactNode } from "react";
-import MainHeader from "../MainHeader/MainHeader";
+import MainHeader from "../Header/Header";
 
 interface MainLayoutProps {
   children: ReactNode;

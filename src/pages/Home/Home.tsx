@@ -6,7 +6,7 @@ import HomeSorting from "../../components/Home/HomeSorting/HomeSorting";
 
 const Home: FC = () => {
   return (
-    <Stack gap={3}>
+    <Stack className="mb-3" gap={3}>
       <HomeSearch />
       <HomeSorting />
       <HomePosts />

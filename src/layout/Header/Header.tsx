@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styles from "./MainHeader.module.sass";
+import styles from "./Header.module.sass";
 
 const MainHeader: FC = () => {
   return (
@@ -25,7 +25,7 @@ const MainHeader: FC = () => {
               <Link className={styles.link} to="/">
                 Главная
               </Link>
-              <Link className={styles.link} to="/">
+              <Link className={styles.link} to="/about">
                 Обо мне
               </Link>
             </Nav>
